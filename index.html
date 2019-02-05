@@ -356,7 +356,7 @@
                 <div class="row">
                     <div class="col-md-8 info">
                         <div class="title">Узнайте за 1 минуту стоимость <br>вашего заказа</div>
-                        <button type="button" class="btn order-button yellow mx-auto d-block can-order" id="show">Расчитать стоимость</button>
+                        <button type="button" class="btn order-button yellow mx-auto d-block can-order">Расчитать стоимость</button>
                     </div>
                     <div class="col-md-4 form">
                             <div class="header">
@@ -365,14 +365,14 @@
                             <div class="add-header">
                                 Оставьте свои данные и мы <br>поможем вам
                             </div>
-                            <form>
+                            <form action="./send_form.php" method="POST">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ваше имя">
+                                    <input required type="text" class="form-control" placeholder="Ваше имя" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Телефон">
+                                    <input required type="text" class="form-control" placeholder="Телефон" name="phone">
                                 </div>
-                                <button type="button" class="btn order-button white-outline can-order">Перезвоните мне</button>
+                                <button type="submit" class="btn order-button white-outline">Перезвоните мне</button>
                             </form>
                     </div>
                 </div>
@@ -508,20 +508,20 @@
                             <div class="col-md-6 mb-4">
                                 <div class="plain shadow rounded">
                                     <h4 class="mb-4">Оставьте заявку, мы свяжемся с Вами в течении 24 часов</h4>
-                                    <form>
+                                    <form action="./send_form.php" method="POST">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="" placeholder="Название компании">
+                                                <input required type="text" class="form-control" placeholder="Название компании" name="company">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="" placeholder="Имя">
+                                                <input required type="text" class="form-control" placeholder="Имя" name="name">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="" placeholder="Телефон">
+                                                <input required type="text" class="form-control" placeholder="Телефон" name="phone">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="" placeholder="Электронная почта">
+                                                <input required type="email" class="form-control" placeholder="Электронная почта" name="email">
                                             </div>
-                                            <button type="button" class="btn order-button yellow mx-auto d-block can-order" id="show">Расчитать стоимость</button>
+                                            <button type="submit" class="btn order-button yellow mx-auto d-block">Расчитать стоимость</button>
                                     </form>
                                 </div>
                             </div>
@@ -573,14 +573,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="plain shadow rounded">
-                                <form>
+                                <form action="./send_form.php" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="" placeholder="Имя">
+                                        <input required type="text" class="form-control" placeholder="Имя" name="name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="" placeholder="Телефон">
+                                        <input required type="text" class="form-control" placeholder="Телефон" name="phone">
                                     </div>
-                                    <button type="button" class="btn order-button yellow mx-auto d-block can-order" id="show">Расчитать стоимость</button>
+                                    <button type="submit" class="btn order-button yellow mx-auto d-block">Расчитать стоимость</button>
                                 </form>
                             </div>
                         </div>
@@ -604,40 +604,56 @@
             </div>
         </footer>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 <script src="./dist/wowjs/dist/wow.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="./dist/slick/slick/slick.min.js"></script>
 
 <script>
+    var is_sending = false;
     $('.slider').slick();
+    function eventSubmit() {
+        $("form").submit(function(e){
+            e.preventDefault();
 
+            if(is_sending)
+                return ;
+
+            is_sending = true;
+
+            var fields = {};
+            var form = $(this);
+
+            $(this).serializeArray().map(function(data) {
+                fields[data.name] = data.value;
+            });
+            $.post("./send_form.php", fields).done(function() {
+                is_sending = false;
+                Swal.fire({
+                    title: '<div class="my-4"><strong>Благодарим вас за заявку!</strong></div>',
+                    showCloseButton: true,
+                    showConfirmButton: false
+                });
+                form.find("input").val("");
+            });
+        });
+    }
+    eventSubmit();
     function send_form(options = {}) {
-        if($(this).parent('form')[0] != undefined) {
-            Swal.fire({
-                title: '<div class="my-4"><strong>Благодорим вас за заявку!</strong></div>',
-                showCloseButton: true,
-                showConfirmButton: false
-            });
-        } else {
-            Swal.fire({
-                html: '<form>' +
-                    '<div class="form-group">' +
-                        '<input type="text" class="form-control" id="" placeholder="Имя">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                        '<input type="text" class="form-control" id="" placeholder="Телефон">' +
-                    '</div>' +
-                    '<button type="button" class="btn order-button yellow mx-auto d-block can-order">Заказать презентацию</button>' +
-                '</form>',
-                showCloseButton: true,
-                showConfirmButton: false
-            });
-            $(".order-button.can-order").click(send_form);
-        }
+        Swal.fire({
+            html: '<form action="./send_form.php" method="POST">' +
+                '<div class="form-group">' +
+                    '<input required type="text" class="form-control" placeholder="Имя" name="name">' +
+                '</div>' +
+                '<div class="form-group">' +
+                    '<input required type="text" class="form-control" placeholder="Телефон" name="phone">' +
+                '</div>' +
+                '<button type="submit" class="btn order-button yellow mx-auto d-block can-order">Заказать презентацию</button>' +
+            '</form>',
+            showCloseButton: true,
+            showConfirmButton: false
+        });
+        eventSubmit();
     }
 
     $(".order-button.can-order").click(send_form);
@@ -645,24 +661,15 @@
     $(function () {
 
         $("img.svg").each(function () {
-            // Perf tip: Cache the image as jQuery object so that we don't use the selector muliple times.
             var $img = jQuery(this);
-            // Get all the attributes.
             var attributes = $img.prop("attributes");
-            // Get the image's URL.
             var imgURL = $img.attr("src");
-            // Fire an AJAX GET request to the URL.
             $.get(imgURL, function (data) {
-            // The data you get includes the document type definition, which we don't need.
-            // We are only interested in the <svg> tag inside that.
             var $svg = $(data).find('svg');
-            // Remove any invalid XML tags as per http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
-            // Loop through original image's attributes and apply on SVG
             $.each(attributes, function() {
                 $svg.attr(this.name, this.value);
             });
-            // Replace image with new SVG
             $img.replaceWith($svg);
             });
         });
