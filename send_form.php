@@ -25,7 +25,7 @@ try {
 
     //Recipients
     $mail->setFrom('oktell@sng-it.com', 'S&G IT');
-    $mail->addAddress('godmanshot@gmail.com');
+    $mail->addAddress('lead@sng-it.com');
 
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
