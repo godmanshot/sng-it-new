@@ -3,6 +3,8 @@
 @import url('https://use.fontawesome.com/releases/v5.7.0/css/all.css')
 @import url('../../node_modules/wowjs/css//libs/animate.css')
 
+// Core
+
 $yellow: #fadd56
 $blue: #00b0c7
 $red: #a12c29
@@ -13,20 +15,92 @@ $black: #394356
     @media (min-width: 1200px)
         max-width: 1250px
 
+html
+    font-size: 14px
+    @media (min-width: 768px)
+        font-size: 16px
+
+img
+    max-width: 100%
+
+.hide
+    display: none
+
 body
     background-color: #fff
     font-family: 'Montserrat', sans-serif
     color: $black
 
-section
-    padding: 90px 0
+// !Core
 
-    h2
-        font-size: 42px
-        text-align: center
-        font-weight: 900
-        margin-bottom: 50px
+// Typography
 
+$h1-font-size: 4rem
+$h2-font-size: 2.5rem
+$h3-font-size: 2rem
+$h4-font-size: 1.5rem
+$letter-spacing: 3px
+$bold: 900
+$semi-bold: 600
+
+h1
+    @include media-breakpoint-up(lg)
+        font-size: $h1-font-size
+
+    text-transform: uppercase
+    font-weight: $bold
+    letter-spacing: $letter-spacing
+    font-size: $h1-font-size/2
+
+h2
+    @include media-breakpoint-up(lg)
+        font-size: $h2-font-size
+    font-size: $h2-font-size*0.68
+    font-weight: $bold
+
+h4
+    @include media-breakpoint-up(lg)
+        font-size: $h4-font-size
+    font-size: $h4-font-size
+    font-weight: $bold
+
+// !Typography
+
+// Buttons
+.order-button
+    max-width: 100%
+    border-radius: 10rem
+    font-weight: $semi-bold
+    letter-spacing: 1px
+    text-transform: uppercase
+
+    padding: 1rem 1.5rem
+    @include media-breakpoint-up(lg)
+        padding: 1rem 4rem
+
+    font-size: 1rem
+    @include media-breakpoint-up(lg)
+        font-size: 1.125rem
+
+
+.order-button.yellow
+    background-color: $yellow
+    color: $black
+
+.order-button.blue-outline
+    background-color: #fff
+    border: 1px solid $blue
+    border-radius: 50px
+    color: $black
+
+.order-button.white-outline
+    border: 1px solid #fff
+    border-radius: 50px
+    color: #fff
+
+// !Buttons
+
+// Ul Li
 ul
     padding-left: 0
     margin: 0
@@ -41,8 +115,150 @@ ul
         font-weight: 500
         padding-bottom: 20px
 
-.blue-background
-    background-image: url('../../img/blue-background.png')
+// !Ul Li
+
+.plain
+    padding: 1.5rem 1.5rem
+    @include media-breakpoint-up(lg)
+        padding: 50px 40px
+
+    background-color: #fff
+
+    h4
+        margin-bottom: 1.3rem
+        @include media-breakpoint-up(lg)
+            margin-bottom: 3.125rem
+
+    ul
+        padding-left: 0
+        margin: 0
+
+        li
+            background: url('../../img/ellips.png') no-repeat left top
+            background-position-y: 7px
+            font-weight: 500
+            list-style: none
+            margin: 0
+
+            padding-left: 1.375rem
+            @include media-breakpoint-up(lg)
+                padding-left: 2rem
+
+            font-size: 1rem
+            @include media-breakpoint-up(lg)
+                font-size: 1.125rem
+            
+            padding-bottom: 1.25rem
+            @include media-breakpoint-up(lg)
+                padding-bottom: 1rem
+
+
+section
+    padding: 2rem 0
+    @include media-breakpoint-up(lg)
+        padding: 6rem 0
+
+    h2
+        text-align: center
+
+        margin-bottom: 1.5rem
+        @include media-breakpoint-up(lg)
+            margin-bottom: 3.125rem
+
+        br
+            display: none
+            @include media-breakpoint-up(lg)
+                display: block !important
+
+// Sections
+
+section .presentation
+    background: url('../../img/notebook.png') no-repeat
+    background-position: 50% 50%
+    background-size: contain
+    width: 100%
+    margin: 1rem 0
+    display: flex
+    justify-content: center
+    align-items: center
+    
+    height: 15rem
+    @include media-breakpoint-up(lg)
+        height: 25rem
+
+    .slider
+        width: 83%
+
+section .partner
+    margin-top: -90px
+    padding-top: 1.25rem
+    padding-bottom: 1.25rem
+    -webkit-transition: box-shadow 0.2s
+    transition: box-shadow 0.2s
+    z-index: 0
+    background-color: #fff
+
+    &:hover
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important
+        z-index: 999
+        
+        .read
+            opacity: 1
+    
+    .img-block
+        width: 100%
+        height: 120px
+        display: flex
+        align-items: center
+        justify-content: center
+        z-index: 999
+
+        img
+            display: block
+            margin: auto
+            z-index: 1
+    
+    .description
+        padding-top: 1rem
+        height: 4.5rem
+
+        font-size: 0.85rem
+        @include media-breakpoint-up(lg)
+            font-size: 1rem
+
+        text-align: center
+        font-weight: $semi-bold
+
+    .read
+        padding-top: 20px
+        opacity: 0
+
+section.insertion
+    @include media-breakpoint-up(lg)
+        background: url('../../img/girl.png') no-repeat left bottom
+        background-position: 20% 100%
+
+    ul
+        padding-left: 0
+        margin: 0
+
+        li
+            background: url('../../img/ellips.png') no-repeat left top, url('../../img/line.png') no-repeat left top
+            background-position-y: 7px, 30px
+            background-position-x: 0, 6px
+            padding-left: 35px
+            list-style: none
+            margin: 0
+            height: 4rem
+            line-height: 1.5rem
+
+            @include media-breakpoint-up(lg)
+                height: 5rem
+                font-size: 1.25rem
+                font-weight: $semi-bold
+
+.blue-background-1
+    background-image: url('../../img/blue-background-1.png')
     background-position: 50% 50%
     background-repeat: no-repeat
     background-size: cover
@@ -99,14 +315,6 @@ header
         padding-top: 50px
         color: #fff
 
-        h1
-            @media (min-width: 768px)
-                font-size: 72px
-
-            text-transform: uppercase
-            font-weight: 900
-            letter-spacing: 3px
-            font-size: 36px
 
         h4
             @media (min-width: 768px)
@@ -114,17 +322,17 @@ header
             font-weight: 400
             font-size: 26px
             padding-top: 25px
+            margin-bottom: 50px
 
     .hello-footer
         color: #fff
 
-
         .order-button
-            margin-top: 50px
+            margin-bottom: 1rem
 
         .add-info
             max-width: 100%
-            margin-top: 50px
+            margin-bottom: 1rem
             .fi-1
                 display: inline
 
@@ -137,7 +345,7 @@ header
         
         .alfa-bank
             max-width: 100%
-            margin-top: 50px
+            margin-bottom: 1rem
             .logo
                 margin: auto
                 padding: 15px 20px
@@ -157,127 +365,6 @@ header
                 margin-top: 10px
                 color: $grey
 
-.plain
-    padding: 50px 40px
-    background-color: #fff
-
-    h4
-        font-weight: 900
-        margin: 0
-
-    ul
-        padding-top: 50px
-        padding-left: 0
-        margin: 0
-
-        li
-            background: url('../../img/ellips.png') no-repeat left top
-            background-position-y: 7px
-            padding-left: 35px
-            list-style: none
-            margin: 0
-            font-size: 18px
-            font-weight: 500
-            padding-bottom: 20px
-
-.presentation
-    background: url('../../img/notebook.png') no-repeat
-    background-position: 50% 50%
-    background-size: contain
-    width: 100%
-    height: 400px
-
-
-.order-button
-    max-width: 100%
-    font-size: 18px
-    border-radius: 50px
-    padding: 15px 40px
-    font-weight: 600
-    letter-spacing: 1px
-    text-transform: uppercase
-
-
-.order-button.yellow
-    background-color: $yellow
-    color: $black
-
-.order-button.blue-outline
-    background-color: #fff
-    border: 1px solid $blue
-    border-radius: 30px
-    color: $black
-
-.order-button.white-outline
-    border: 1px solid #fff
-    border-radius: 30px
-    color: #fff
-
-.hide
-    display: none
-
-.partner
-    margin-top: -90px
-    padding-top: 20px
-    padding-bottom: 20px
-    -webkit-transition: box-shadow 0.2s
-    transition: box-shadow 0.2s
-    z-index: 0
-    background-color: #fff
-
-    &:hover
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important
-        z-index: 999
-        
-        .read
-            opacity: 1
-    
-    .img-block
-        width: 100%
-        height: 120px
-        display: flex
-        align-items: center
-        justify-content: center
-        z-index: 999
-
-        img
-            max-width: 100%
-            display: block
-            margin: auto
-            z-index: 1
-            z-index: 999
-    
-    .description
-        padding-top: 15px
-        font-size: 16px
-        text-align: center
-        font-weight: 600
-
-    .read
-        padding-top: 20px
-        opacity: 0
-
-
-.insertion
-    @media (min-width: 1200px)
-        background: url('../../img/girl.png') no-repeat left bottom
-        background-position: 20% 100%
-
-    ul
-        padding-left: 0
-        margin: 0
-
-        li
-            background: url('../../img/ellips.png') no-repeat left top, url('../../img/line.png') no-repeat left top
-            background-position-y: 7px, 30px
-            background-position-x: 0, 6px
-            height: 5rem
-            padding-left: 35px
-            list-style: none
-            margin: 0
-            font-size: 20px
-            font-weight: 600
-            padding-bottom: 20px
 
 
 .price
@@ -322,10 +409,14 @@ header
 
 
     .description
-        padding-top: 15px
-        font-size: 18px
+        padding-top: 1rem
+
+        font-size: 1rem
+        @include media-breakpoint-up(lg)
+            font-size: 1.25rem
+
         text-align: center
-        font-weight: 600
+        font-weight: $semi-bold
 
     .hidden-block
         display: none
@@ -337,12 +428,13 @@ header
         z-index: 999
         color: $black
 
-        @media (min-width: 1200px)
+        @include media-breakpoint-up(lg)
             width: 500px
     
     &:hover
         .hidden-block
-            display: block
+            @include media-breakpoint-up(lg)
+                display: block
 
 .contact-form-1
     border-radius: 15px
@@ -354,16 +446,24 @@ header
         justify-content: center
         flex-direction: column
         align-items: center
+        padding: 3rem 1rem
 
         .title
-            font-size: 30px
-            font-weight: 600
+            font-size: 1.5rem
+            line-height: 1.5rem
+            @include media-breakpoint-up(lg)
+                font-size: 2rem
+                line-height: 2rem
+
+            font-weight: $semi-bold
             text-align: center
-            margin-bottom: 30px
+            margin-bottom: 1.5rem
 
     .form
+        @include media-breakpoint-up(lg)
+            border-radius: 0 15px 15px 0
+
         background-color: #68c1ee
-        border-radius: 0 15px 15px 0
         color: #fff
         text-align: center
         padding: 35px
@@ -375,3 +475,147 @@ header
 
         .add-header
             margin-bottom: 15px
+
+.blue-background-2
+    background-image: url('../../img/blue-background-2.png')
+    background-position: top left
+    background-repeat: no-repeat
+    background-size: cover
+
+    h2
+        color: #fff
+        
+    & .row>div:first-child .plain
+        background-image: url('../../img/incoming-call.png')
+        background-position: 98% 2% 
+        background-repeat: no-repeat
+        background-size: 24px
+        
+        @include media-breakpoint-up(lg)
+            background-size: auto
+            background-position: 95% 5% 
+        
+    & .row>div:last-child .plain
+        background-image: url('../../img/outgoing-call.png')
+        background-position: 98% 2% 
+        background-repeat: no-repeat
+        background-size: 24px
+        
+        @include media-breakpoint-up(lg)
+            background-size: auto
+            background-position: 95% 5% 
+
+    .plain
+        li
+            font-size: 1rem
+
+.advantages
+    @include media-breakpoint-up(lg)
+        background: url('../../img/advantages-background-1.png') no-repeat right top, url('../../img/advantages-background-2.png') no-repeat left bottom
+
+    .advantage
+        background-color: #475062
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
+
+        font-size: 1rem
+        @include media-breakpoint-up(lg)
+            font-size: 1.25rem
+
+        font-weight: $semi-bold
+        text-align: center
+
+        .left
+            background: url(../../img/advantage.png) no-repeat
+            background-position: right
+            background-size: cover
+            font-size: 12px
+            line-height: 12px
+            @include media-breakpoint-up(lg)
+                font-size: 1rem
+                line-height: 1.5rem
+
+            height: 80px
+            @include media-breakpoint-up(lg)
+                height: 140px
+
+            padding: 0 1rem
+            display: flex
+            align-items: center
+            justify-content: center
+
+        .right
+            color: #fff
+            font-size: 12px
+            line-height: 12px
+            @include media-breakpoint-up(lg)
+                font-size: 1rem
+                line-height: 1.5rem
+
+            height: 80px
+            @include media-breakpoint-up(lg)
+                height: 140px
+
+            @include media-breakpoint-up(lg)
+                padding: 0 1rem
+            display: flex
+            align-items: center
+            justify-content: center
+
+
+.blue-background-3
+    background-image: url('../../img/blue-background-3.png')
+    background-position: 50% 50%
+    background-repeat: no-repeat
+    background-size: cover
+
+    h2
+        color: #fff
+
+    .plain
+        text-align: center
+        max-width: 520px
+        margin: auto
+
+        form
+            input
+                border-radius: 2rem
+                padding: 1.7rem
+                margin-bottom: 20px
+    
+    & .row>div:last-child
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+.footer-order
+    h4
+        br
+            display: none
+            @include media-breakpoint-up(lg)
+                display: block
+    form
+        input
+            border-radius: 2rem
+            padding: 1.7rem
+            margin-bottom: 20px
+
+footer
+    background-color: #18455c
+    padding: 30px 0
+    color: #fff
+    text-align: center
+
+    .row div
+        display: flex
+        justify-content: center
+        align-items: center
+
+.swal2-modal
+    padding: 3rem 1rem !important
+    
+form
+    input
+        border-radius: 2rem !important
+        padding: 1.7rem !important
+        margin-bottom: 20px
