@@ -30,7 +30,7 @@
                         </li>
                         <li class="nav-item text-light contacts">
                             <div class="phone">+7 (727) 357 23 73</div>
-                            <div class="order">Заказать звонок</div>
+                            <div class="order can-order" style="cursor: pointer">Заказать звонок</div>
                         </li>
                     </ul>
                 </div>
@@ -648,7 +648,7 @@
                 '<div class="form-group">' +
                     '<input required type="text" class="form-control" placeholder="Телефон" name="phone">' +
                 '</div>' +
-                '<button type="submit" class="btn order-button yellow mx-auto d-block can-order">Заказать презентацию</button>' +
+                '<button type="submit" class="btn order-button yellow mx-auto d-block can-order">'+options.html()+'</button>' +
             '</form>',
             showCloseButton: true,
             showConfirmButton: false
@@ -656,7 +656,7 @@
         eventSubmit();
     }
 
-    $(".order-button.can-order").click(send_form);
+    $(".can-order").click(function() {send_form($(this))});
 
     $(function () {
 
