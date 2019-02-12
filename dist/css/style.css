@@ -7098,6 +7098,7 @@ section .partner {
     justify-content: center;
     z-index: 999; }
     section .partner .img-block img {
+      max-height: 130px;
       display: block;
       margin: auto;
       z-index: 1; }
